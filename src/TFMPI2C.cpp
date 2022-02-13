@@ -361,17 +361,17 @@ void TFMPI2C::recoverI2CBus( uint8_t dataPin, uint8_t clockPin)
 //
 //  Recover I2C bus using default pin numbers
 //  defined in every board's 'variants.h` file.
-void TFMPI2C::recoverI2CBus()
-{
-    Serial.println( "Recover default I2C bus.");
-    recoverI2CBus( PIN_WIRE_SDA, PIN_WIRE_SCL);
-
-    // If the Arduino has a second I2C interface...
-    #if WIRE_INTERFACES_COUNT > 1
-        Serial.println( "Second I2C bus detected.");
-        recoverI2CBus( PIN_WIRE1_SDA, PIN_WIRE1_SCL);
-    #endif
-}
+//void TFMPI2C::recoverI2CBus()
+//{
+//    Serial.println( "Recover default I2C bus.");
+//    recoverI2CBus( -1, -1);
+//
+//    // If the Arduino has a second I2C interface...
+//    #if WIRE_INTERFACES_COUNT > 1
+//        Serial.println( "Second I2C bus detected.");
+//        recoverI2CBus( PIN_WIRE1_SDA, PIN_WIRE1_SCL);
+//    #endif
+//}
 //
 // - - - - -  End of Recover I2C Bus function  - - - - - -
 

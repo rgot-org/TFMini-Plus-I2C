@@ -235,10 +235,10 @@ class TFMPI2C
     //  Looking for Y/N keyboard input
     bool getResponse();
     //  Recover specified I2C bus
-    void recoverI2CBus( uint8_t dataPin, uint8_t clockPin);
+    void recoverI2CBus( uint8_t dataPin=-1, uint8_t clockPin=-1);
     //  Recover I2C bus using default pin numbers
     //  Includes second bus, if any
-    void recoverI2CBus();
+   // void recoverI2CBus();
 
   private:
     uint8_t frame[ TFMP_FRAME_SIZE + 1];

@@ -60,22 +60,18 @@
  */
 
 #include <Wire.h>     // Arduino standard I2C/Two-Wire Library
-#include "printf.h"   // Modified to support Intel based Arduino
-                      // devices such as the Galileo. Download from:
-                      // https://github.com/spaniakos/AES/blob/master/printf.h
-
 #include <TFMPI2C.h>  // TFMini-Plus I2C Library v1.7.2
 TFMPI2C tfmP;         // Create a TFMini-Plus I2C object
 
 void setup()
 {
     Serial.begin( 115200);   // Initialize terminal serial port
-    printf_begin();          // Initialize printf library.
+    //Serial.printf_begin();          // Initialize Serial.printf library.
     delay(20);
     
-    printf("\n");            // say 'hello'
-    printf( "TFMPlus I2C Library Example - 14JAN2022");
-    printf("\n\n");
+    Serial.printf("\n");            // say 'hello'
+    Serial.printf( "TFMPlus I2C Library Example - 14JAN2022");
+    Serial.printf("\n\n");
 
     // - - - - -   RECOVER I2C BUS  - - - - - - - - - - - - - - - 
     // An I2C device that quits unexpectedly can leave the I2C bus hung,
@@ -91,29 +87,29 @@ void setup()
 
     // Send some example commands to the TFMini-Plus
     // - - Perform a system reset - - - - - - - - - - -
-    printf( "System reset: ");
+    Serial.printf( "System reset: ");
     if( tfmP.sendCommand( SOFT_RESET, 0))
     {
-        printf( "passed.\r\n");
+        Serial.printf( "passed.\r\n");
     }
     else tfmP.printReply();  // This response and 'printStatus()' are for
                              // troubleshooting and not strictly necessary.
     //
     // - - Display the firmware version - - - - - - - - -
-    printf( "Firmware version: ");
+    Serial.printf( "Firmware version: ");
     if( tfmP.sendCommand( GET_FIRMWARE_VERSION, 0))
     {
-        printf( "%1u.",  tfmP.version[ 0]); // print three single numbers
-        printf( "%1u.",  tfmP.version[ 1]); // each separated by a dot
-        printf( "%1u\n", tfmP.version[ 2]);
+        Serial.printf( "%1u.",  tfmP.version[ 0]); // print three single numbers
+        Serial.printf( "%1u.",  tfmP.version[ 1]); // each separated by a dot
+        Serial.printf( "%1u\n", tfmP.version[ 2]);
     }
     else tfmP.printReply();
     //
     // - - Set the data frame-rate to 20 - - - - - - - - -
-    printf( "Data-Frame rate: ");
+    Serial.printf( "Data-Frame rate: ");
     if( tfmP.sendCommand( SET_FRAME_RATE, FRAME_20))
     {
-        printf( "%2uHz.\n", FRAME_20);
+        Serial.printf( "%2uHz.\n", FRAME_20);
     }
     else tfmP.printReply();
     // - - - - -   End of example commands- - - - - - - - - -
@@ -127,16 +123,16 @@ void setup()
     // - - - - - - - - - - - - - - - - - - - - - - - -
 
     // - - Set Serial Mode - - - - - - - - - - -
-    printf( "Set Serial Mode: ");
+    Serial.printf( "Set Serial Mode: ");
     if( tfmP.sendCommand( SET_SERIAL_MODE, 0))
     {
-        printf( "mode set.\r\n");
+        Serial.printf( "mode set.\r\n");
     }
     else tfmP.printReply();
-    printf( "Save Settings: ");
+    Serial.printf( "Save Settings: ");
     if( tfmP.sendCommand( SAVE_SETTINGS, 0))
     {
-        printf( "saved.\r\n");
+        Serial.printf( "saved.\r\n");
     }
     else tfmP.printReply();
 */
@@ -155,10 +151,10 @@ void loop()
     tfmP.getData( tfDist, tfFlux, tfTemp); // Get a frame of data
     if( tfmP.status == TFMP_READY)         // If no error...
     {
-        printf( "Dist:%04icm ", tfDist);   // display distance,
-        printf( "Flux:%05i ", tfFlux);     // display signal strength/quality,
-        printf( "Temp:%2i%s", tfTemp, "°C" );   // display temperature,
-        printf( "\n");                     // end-of-line.
+        Serial.printf( "Dist:%04icm ", tfDist);   // display distance,
+        Serial.printf( "Flux:%05i ", tfFlux);     // display signal strength/quality,
+        Serial.printf( "Temp:%2i%s", tfTemp, "°C" );   // display temperature,
+        Serial.printf( "\n");                     // end-of-line.
     }
     else
     {

@@ -77,7 +77,7 @@ void setup()
 {
     Wire.begin();            // Initialize two-wire interface
     Serial.begin( 115200);   // Initialize terminal serial port
-    printf_begin();          // Initialize printf library.
+    //printf_begin();          // Initialize printf library.
 	  delay(20);
 
     Serial.flush();          // Flush serial write buffer
